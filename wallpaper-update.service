@@ -1,0 +1,7 @@
+[Unit]
+Description=Wallpaper update
+
+[Service]
+Type=oneshot
+Environment="SCRIPT=%h/.config/systemd/user/%n.sh"
+ExecStart=sh -c "$SCRIPT"
