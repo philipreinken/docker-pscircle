@@ -17,7 +17,7 @@ CPULISTCENTER="$(($HALFRESX - $RESY)):0"
 MEMLISTCENTER="$(($HALFRESX - $RESY + $OFFSETMEMLIST)):0"
 
 if [[ -x "$(command -v docker)" && -x "$(command -v gsettings)" ]]; then
-  docker run --rm -v "/tmp:/tmp" -w "/tmp" -v "/proc:/host/proc" pscircle \
+  docker run --rm -v "/tmp:/tmp" -w "/tmp" -v "/proc:/host/proc:ro" pscircle \
     --output=output.png \
     --output-width="$RESX" \
     --output-height="$RESY" \
