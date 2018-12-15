@@ -1,8 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-if [[ ! -x "$(command -v xdpyinfo)" ]]; then
-  echo 'xdpyinfo missing'
+if [[ "$(command -v xdpyinfo docker gsettings | wc -l)" -lt 3 ]]; then
+  echo 'Missing dependency xdpyinfo, docker or gsettings'
+  exit 1
 fi
 
 RES="$(xdpyinfo | awk '/dimensions:/ { print $2 }')"
@@ -20,10 +21,6 @@ WIDESCREEN="$(($RATIO > 2))"
 
 IMGDIR="/tmp/pscircle"
 IMGNAME="out.png"
-
-if [[ ! -x "$(command -v docker)" || ! -x "$(command -v gsettings)" ]]; then
-  echo 'docker or gsettings missing'
-fi
 
 if [[ ! -d "$IMGDIR" ]]; then
   mkdir -p "$IMGDIR"
@@ -54,6 +51,4 @@ docker run --rm -u "$(id -u):$(id -g)" -v "$IMGDIR:$IMGDIR:rw" -w "$IMGDIR" -v "
   --link-color-max=19b6ee \
   --dot-color-min=e95420 \
   --dot-color-max=e95420 \
-  --tree-font-color=a8a8a8
-
-gsettings set org.gnome.desktop.background picture-uri "file://$IMGDIR/$IMGNAME"
+  --tree-font-color=a8a8a8 && gsettings set org.gnome.desktop.background picture-uri "file://$IMGDIR/$IMGNAME"
