@@ -8,6 +8,7 @@ fi
 RES="$(xdpyinfo | awk '/dimensions:/ { print $2 }')"
 RESX="$(echo $RES | awk -Fx '{ print $1 }')"
 RESY="$(echo $RES | awk -Fx '{ print $2 }')"
+RATIO="$(($RESX / $RESY))"
 
 HALFRESX="$(($RESX / 2))"
 OFFSETMEMLIST="400"
@@ -15,6 +16,7 @@ OFFSETMEMLIST="400"
 TREECENTER="-$HALFRESX:0"
 CPULISTCENTER="$(($HALFRESX - $RESY)):0"
 MEMLISTCENTER="$(($HALFRESX - $RESY + $OFFSETMEMLIST)):0"
+WIDESCREEN="$(($RATIO > 2))"
 
 IMGDIR="/tmp/pscircle"
 IMGNAME="out.png"
@@ -38,6 +40,8 @@ docker run --rm -u "$(id -u):$(id -g)" -v "$IMGDIR:$IMGDIR:rw" -w "$IMGDIR" -v "
   --tree-rotate=true \
   --tree-rotation-angle=1.55 \
   --tree-center="$TREECENTER" \
+  --cpulist-show="$WIDESCREEN" \
+  --memlist-show="$WIDESCREEN" \
   --cpulist-center="$CPULISTCENTER"\
   --memlist-center="$MEMLISTCENTER" \
   --tree-font-size=12 \
