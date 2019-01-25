@@ -23,5 +23,7 @@ RUN apt update && apt upgrade -y && apt install -y --no-install-recommends \
   ninja install && \
   apt-get clean
 
+USER nobody
+
 ENTRYPOINT ["pscircle"]
 CMD ["--help"]

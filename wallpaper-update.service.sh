@@ -19,7 +19,7 @@ CPULISTCENTER="$(($HALFRESX - $RESY)):0"
 MEMLISTCENTER="$(($HALFRESX - $RESY + $OFFSETMEMLIST)):0"
 WIDESCREEN="$(($RATIO > 2))"
 
-IMGDIR="/tmp/pscircle"
+IMGDIR="$HOME/.cache/docker-pscircle"
 IMGNAME="out.png"
 
 if [[ ! -d "$IMGDIR" ]]; then
