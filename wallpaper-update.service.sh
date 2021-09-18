@@ -46,9 +46,9 @@ docker run --rm -u "$(id -u):$(id -g)" -v "$IMGDIR:$IMGDIR:rw" -w "$IMGDIR" -v "
   --dot-radius=2 \
   --dot-border-width=1 \
   --link-width=1.5 \
-  --background-color=2b2929 \
-  --link-color-min=267294 \
-  --link-color-max=19b6ee \
-  --dot-color-min=e95420 \
-  --dot-color-max=e95420 \
-  --tree-font-color=a8a8a8 && gsettings set org.gnome.desktop.background picture-uri "file://$IMGDIR/$IMGNAME"
+  --background-color=2e3440 \
+  --link-color-min=5e81ac \
+  --link-color-max=81a1c1 \
+  --dot-color-min=88c0d0 \
+  --dot-color-max=88c0d0 \
+  --tree-font-color=d8dee9 && gsettings set org.gnome.desktop.background picture-uri "file://$IMGDIR/$IMGNAME"
